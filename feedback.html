@@ -4,69 +4,120 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Teacher Feedback Form</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="feedback.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="container">
-    <h1>📋 Teacher Feedback Form</h1>
-    <form id="feedbackForm">
-      <div class="form-group">
-        <label for="teacher">Teacher Name</label>
-        <input type="text" id="teacher" name="teacher" placeholder="e.g. Mr. Sharma" required />
-      </div>
-
-      <div class="form-group">
-        <label for="rating">Rating</label>
-        <div class="rating">
-          <input type="radio" name="rating" id="rate-5" value="5" required />
-          <label for="rate-5">★</label>
-          <input type="radio" name="rating" id="rate-4" value="4" />
-          <label for="rate-4">★</label>
-          <input type="radio" name="rating" id="rate-3" value="3" />
-          <label for="rate-3">★</label>
-          <input type="radio" name="rating" id="rate-2" value="2" />
-          <label for="rate-2">★</label>
-          <input type="radio" name="rating" id="rate-1" value="1" />
-          <label for="rate-1">★</label>
+  <div class="wrapper">
+    <div class="container">
+      <h2>Teacher Feedback</h2>
+      <form id="feedbackForm">
+        <div class="form-group">
+          <label for="studentName">Your Name</label>
+          <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required />
         </div>
-      </div>
+      
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        </div>
+      
+        <div class="form-group">
+          <label for="teacherName">Teacher's Name</label>
+          <input type="text" id="teacherName" name="teacherName" placeholder="Enter teacher's name" required />
+        </div>
 
-      <div class="form-group">
-        <label for="comments">Comments (Optional)</label>
-        <textarea id="comments" name="comments" placeholder="Share your thoughts..."></textarea>
-      </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="">Select a subject</option>
+            <optgroup label="Computer Science">
+              <option value="programmingFundamentals">Programming Fundamentals</option>
+              <option value="dataStructuresAndAlgorithms">Data Structures and Algorithms</option>
+              <option value="objectOrientedProgramming">Object-Oriented Programming</option>
+              <option value="databaseManagementSystems">Database Management Systems</option>
+              <option value="computerNetworks">Computer Networks</option>
+              <option value="operatingSystems">Operating Systems</option>
+              <option value="webDevelopment">Web Development</option>
+              <option value="softwareEngineering">Software Engineering</option>
+              <option value="artificialIntelligence">Artificial Intelligence</option>
+              <option value="machineLearning">Machine Learning</option>
+              <option value="computerArchitecture">Computer Architecture</option>
+              <option value="theoryOfComputation">Theory of Computation</option>
+              <option value="cybersecurity">Cybersecurity</option>
+              <option value="mobileApplicationDevelopment">Mobile Application Development</option>
+              <option value="cloudComputing">Cloud Computing</option>
+              <option value="dataScience">Data Science</option>
+              <option value="imageProcessing">Image Processing</option>
+              <option value="naturalLanguageProcessing">Natural Language Processing</option>
+              <option value="computerGraphics">Computer Graphics</option>
+            </optgroup>
+            <optgroup label="Information Science">
+              <option value="informationArchitecture">Information Architecture</option>
+              <option value="informationRetrieval">Information Retrieval</option>
+              <option value="knowledgeManagement">Knowledge Management</option>
+              <option value="humanComputerInteraction">Human-Computer Interaction</option>
+              <option value="digitalLibraries">Digital Libraries</option>
+              <option value="dataAnalysis">Data Analysis</option>
+              <option value="informationVisualization">Information Visualization</option>
+              <option value="socialMediaAnalytics">Social Media Analytics</option>
+              <option value="researchMethods">Research Methods</option>
+              <option value="informationPolicy">Information Policy</option>
+              <option value="dataGovernance">Data Governance</option>
+              <option value="uxDesign">UX Design</option>
+              <option value="contentManagementSystems">Content Management Systems</option>
+            </optgroup>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-      <button type="submit">Submit Feedback</button>
-    </form>
-    <div id="success-message" class="hidden">✅ Thank you for your feedback!</div>
+        <div class="form-group" id="otherSubjectGroup" style="display: none;">
+          <label for="otherSubject">Other Subject</label>
+          <input type="text" id="otherSubject" name="otherSubject" placeholder="Enter the subject name" />
+        </div>
+
+        <div class="form-group">
+          <label for="clarity">Clarity of Explanation</label>
+          <select id="clarity" name="clarity">
+            <option value="">Select an option</option>
+            <option value="excellent">Excellent</option>
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="engagement">Student Engagement</label>
+          <select id="engagement" name="engagement">
+            <option value="">Select an option</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="comments">Additional Comments</label>
+          <textarea id="comments" name="comments" rows="5" placeholder="Your valuable feedback"></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">Submit Feedback</button>
+      </form>
+    </div>
   </div>
 
   <script>
-    const form = document.getElementById("feedbackForm");
-    const message = document.getElementById("success-message");
+    const subjectDropdown = document.getElementById('subject');
+    const otherSubjectGroup = document.getElementById('otherSubjectGroup');
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = {
-        teacher: form.teacher.value,
-        rating: form.rating.value,
-        comments: form.comments.value
-      };
-
-      const res = await fetch("/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-
-      if (res.ok) {
-        form.reset();
-        message.classList.remove("hidden");
-        message.classList.add("fade-in");
-        setTimeout(() => message.classList.add("hidden"), 4000);
-      }
+    subjectDropdown.addEventListener('change', function () {
+      otherSubjectGroup.style.display = this.value === 'other' ? 'block' : 'none';
     });
   </script>
+  <script src="validate.js"></script>
+
 </body>
 </html>

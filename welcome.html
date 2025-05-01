@@ -3,14 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome - Feedback Portal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Welcome | Feedback Portal</title>
+  <link rel="stylesheet" href="common.css"/>
+  <link rel="stylesheet" href="welcome.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="welcome-container">
-    <h1 class="welcome-title">👋 Welcome to the Student Feedback Portal</h1>
-    <p class="welcome-subtitle">Your feedback helps improve teaching quality. Let's get started!</p>
-    <a href="feedback.html" class="start-btn">Start Feedback</a>
-  </div>
+  <section class="welcome-hero with-image">
+    <div class="overlay"></div>
+    <div class="welcome-content">
+      <h1>Welcome to the Student Feedback Portal</h1>
+      <p>Your opinion matters! Help us improve the quality of teaching by giving your feedback for each teacher.</p>
+      <button class="btn hero-btn" id="openFeedback">Give Feedback</button>
+    </div>
+  </section>
+
+  <script>
+    const btn = document.querySelector('.hero-btn');
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('.welcome-hero').classList.add('door-open');
+      setTimeout(() => {
+        window.location.href = "feedback.html";
+      }, 500); // Wait for animation to finish
+    });
+  </script>
 </body>
 </html>
