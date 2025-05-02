@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Feedback Summary</h1>
+
+  <div class="charts">
+    <div class="chart">
+      <h2>Clarity of Explanation</h2>
+      <canvas id="clarityChart" width="400" height="200"></canvas>
+    </div>
+    <div class="chart">
+      <h2>Student Engagement</h2>
+      <canvas id="engagementChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Include credentials so session cookie gets sent
+    fetch('/feedback-data', { credentials: 'same-origin' })
+      .then(res => {
+        if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+        return res.json();
+      })
+      .then(feedbacks => {
+        const clarityCounts = {};
+        const engagementCounts = {};
+
+        feedbacks.forEach(fb => {
+          clarityCounts[fb.clarity] = (clarityCounts[fb.clarity] || 0) + 1;
+          engagementCounts[fb.engagement] = (engagementCounts[fb.engagement] || 0) + 1;
+        });
+
+        // Draw charts (same as before)
+        const draw = (id, title, dataObj, color) => {
+          new Chart(document.getElementById(id), {
+            type: 'bar',
+            data: {
+              labels: Object.keys(dataObj),
+              datasets: [{
+                label: title,
+                data: Object.values(dataObj),
+                backgroundColor: color,
+                borderColor: color.replace(/0\.7/, '1'),
+                borderWidth: 1
+              }]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+          });
+        };
+
+        draw('clarityChart', 'Number of Responses', clarityCounts, 'rgba(54, 162, 235, 0.7)');
+        draw('engagementChart', 'Number of Responses', engagementCounts, 'rgba(75, 192, 192, 0.7)');
+      })
+      .catch(err => {
+        console.error(err);
+        document.body.insertAdjacentHTML('beforeend',
+          '<p style="color:red; text-align:center;">Failed to load feedback data. Are you logged in?</p>');
+      });
+  </script>
+</body>
+</html>
