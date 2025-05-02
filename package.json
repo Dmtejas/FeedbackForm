@@ -4,7 +4,8 @@
   "description": "This project is a web-based feedback system designed for students to submit feedback about their teachers. The submitted data is stored in a database and then analyzed to generate bar graphs that visually represent the feedback trends.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

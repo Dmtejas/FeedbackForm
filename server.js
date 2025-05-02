@@ -19,7 +19,7 @@ app.use(session({
 
 // ——— MongoDB Connection ———
 // NOTE: password "tejasgowda@2006" must have the '@' URL‑encoded as '%40'
-const MONGODB_URI = 'mongodb://Tejas:tejasgowda%402006@localhost:27017/feedbackDB?authSource=admin';
+const MONGODB_URI = 'mongodb+srv://Tejas:tejasgowda%402006@feedbackform.q2zhqh3.mongodb.net/?retryWrites=true&w=majority&appName=FeedBackForm';
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true
